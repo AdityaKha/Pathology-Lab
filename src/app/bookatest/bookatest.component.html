@@ -1,0 +1,587 @@
+<html>
+    <body>
+      <span style="float:right;margin-right:20px; margin-top:10px;">Your Cart</span> <button class ="btn btn-warning"style="float: right;margin-right:10px; width:50px;border-radius: 30px;padding-right:10px;padding-bottom:2px" ><i class="material-icons"onclick="document.getElementById('cd').style.display='block';">shopping_cart</i></button>  
+      <div style="display: none;" class="modal" id="cd">
+        <span onclick="document.getElementById('cd').style.display='none'" class="close" title="Close Modal">&times;</span>
+       <div style="margin-right: 150px; margin-top:60px;">
+        <table style="border: 2px solid black;" class="table"><thead><tr><th scope="col">Name of the test</th>
+          <th scope="col">Cost</th><tr></thead>
+        <tbody><tr *ngFor="let a of testname index as i;let b of cart index as j;" >
+        <td> {{testname[i]}}</td>
+          <td>₹{{cart[j]}}</td>
+        </tr><tr><th>Total Cost</th><td>₹{{this.sum}}</td></tr></tbody></table>
+        </div>
+        <button class="btn btn-outline-primary" onclick="document.getElementById('cd').style.display='none'" style="margin-left:50px;width: 100px;">
+          Add More
+        </button>
+        <button class="btn btn-outline-primary" onclick="document.getElementById('cd').style.display='none';
+        document.getElementById('pm').style.display='block'" style="margin-left:10px;width: 100px;">
+          Checkout
+        </button>
+      </div>
+      <div style="display: none;" class="modal" id="pm">
+        <div style="margin-right: 150px; margin-top:60px;">
+          <h1 style="text-align:center"><b>Payments Page</b>
+          <img src="http://www.delhicarrentals.co.in/wp-content/uploads/2020/08/Credit_Card_Payment_Method1.jpg" style="height:100px;width:200px"></h1>
+          <h2>Total Amount to be paid ₹{{sum}}</h2>
+        <table class="table table-striped" style="width: 200px; border:2px solid #000000">
+          <tr><td><b>Name on Card</b></td><td><input type="text"  placeholder="ABC XYZ"></td></tr>
+          <tr><td><b>Account Number</b></td><td><input type="text" placeholder="XXXX-XXXX-XXXX"></td></tr>
+          <tr><td><b>CVV</b></td><td><input type="text" placeholder="XXX"></td></tr>
+          <tr><td><b>Date of expiry</b></td><td><input type="text" placeholder="XX/XX"></td></tr>
+        </table>
+        <button class="btn btn-primary" style="width:80px;margin-left: 40px;"  (click)="cancel();">Cancel</button>&nbsp;
+        <button class="btn btn-primary" style="width:70px;text-align: center;margin-left: 40px;">Pay</button>
+        </div>
+      </div>
+      <h2 style=" font-family: sans-serif; margin-left: 45%;box-shadow:5px 6px 6px 3px rgb(235, 197, 39);width:180px;padding: 5px;"><b>Choose your Test</b></h2>
+      
+      <div id="p1">
+      <p><b>Filters</b></p>
+      </div>
+      <div id="f2">
+      <button (click)="show()"> Sort list by</button>
+      <div *ngIf="ff3" id="f3">
+          &nbsp;<input type="checkbox" (click)="tests()"><label>&nbsp;Test</label><br>
+          &nbsp;<input type="checkbox" (click)="packagess()"><label>&nbsp;Packages</label>
+      </div>    
+      </div>
+      <div id="f2">
+        <button (click)="show2()"> Organs</button>
+        <div *ngIf="ff4" id="f3">
+            &nbsp;<input type="checkbox" (click)="ags()"><label>&nbsp;Adrenal gland</label><br>
+            &nbsp;<input type="checkbox" (click)="bones()"><label>&nbsp;Bone</label><br>
+            &nbsp;<input type="checkbox" (click)="hearts()"><label>&nbsp;Heart</label><br>
+            &nbsp;<input type="checkbox" (click)="kidneys()"><label>&nbsp;Kidney</label><br>
+            &nbsp;<input type="checkbox" (click)="livers()"><label>&nbsp;Liver</label><br>
+            &nbsp;<input type="checkbox" (click)="pancreas()"><label>&nbsp;Pancreas</label><br>
+            &nbsp;<input type="checkbox" (click)="thyroids()"><label>&nbsp;Thyroid</label>
+        </div>    
+        </div>
+        <div id="f2">
+            <button (click)="show3()">Condition</button>
+            <div *ngIf="ff5" id="f3">
+                &nbsp;<input type="checkbox" (click)="diabetess()"><label>&nbsp;Diabetes</label><br>
+                &nbsp;<input type="checkbox" (click)="ids()"><label>&nbsp;Industrial diseases</label><br>
+                &nbsp;<input type="checkbox" (click)="mgs()"><label>&nbsp;Myasthenia gravis</label><br>
+                &nbsp;<input type="checkbox" (click)="nds()"><label>&nbsp;Nutritional disorders</label>
+            </div>    
+            </div>
+            <div class="row" id="c1" style="display: none;">
+            <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39)">
+                <div class="card-body">
+                  <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Adenosine Deaminase (ADA)</h2>
+                  <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 4HRS</p>
+                  <p class="card-text">Specimen: <span style="color: darkblue;">FLUID/SERUM</span></p>
+                  <p class="card-text" style="margin-left: 250px;">₹600</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                  <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;"(click)="atc('Adenosine Deaminase (ADA)',600);buy(600);">Buy Now</button>
+                  &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Adenosine Deaminase (ADA)',600)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39)">
+                <div class="card-body">
+                  <h2 class="card-title" style="color: #191970; font-family: sans-serif;">SGPT/ALT</h2>
+                  <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2HRS</p>
+                  <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                  <p class="card-text" style="margin-left: 250px;">₹170</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                  <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;" (click)="atc('SGPT/ALT',170);buy(170);">Buy Now</button>
+                  &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('SGPT/ALT',170)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: 280px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                <div class="card-body">
+                  <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Albumin</h2>
+                  <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2HRS</p>
+                  <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                  <p class="card-text" style="margin-left: 250px;">₹130</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                  <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                  &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: -540px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                <div class="card-body">
+                  <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Alkaline Phosphatase</h2>
+                  <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2HRS</p>
+                  <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                  <p class="card-text" style="margin-left: 250px;">₹170</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                  <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                  &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                </div>
+            </div>
+            <!-- <div class="card" style="width: 18rem; margin: 550px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                <div class="card-body">
+                  <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Allergy: &nbsp;Garlic</h2>
+                  <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily : 12 PM, 4th Working Day</p>
+                  <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                  <p class="card-text" style="margin-left: 240px;">₹1100</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                  <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                  &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card" style="width: 18rem; margin: -810px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                <div class="card-body">
+                  <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Calcium, 24 Hrs Urine</h2>
+                  <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily : 12 PM, 4th Working Day</p>
+                  <p class="card-text">Specimen: <span style="color: darkblue;">24-HOUR Urine</span></p>
+                  <p class="card-text" style="margin-left: 240px;">₹260</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                  <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                  &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                </div>
+            </div>-->
+            </div>
+            <div class="row" id="c2" style="display: none;">
+                <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Acute Hepatitis Marker Profile</h2><br>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 240px;">₹3000</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;" (click)="atc('Acute Hepatitis Marker Profile',3000);buy(3000);">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Acute Hepatitis Marker Profile',3000)">Add to Cart</button>
+                    </div>
+                </div>   
+                <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Acute Leukemia Diagnostic Panel</h2>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 230px;">₹12200</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;" (click)="atc('Acute Leukemia Diagnostic Panel',12200);buy(12200);">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Acute Leukemia Diagnostic Panel',12200)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: 280px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Acute Leukemia Extended Panel</h2><br>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 230px;">₹21000</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -540px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">All Chromosomal Diagnostic Panel</h2>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 230px;">₹14000</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- <div class="card" style="width: 18rem; margin: 550px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Amenorrhoea Panel</h2><br>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 240px;">₹2600</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -810px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">AML Prognostication Panel</h2><br>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 230px;">₹17000</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>-->
+            </div> 
+            <div class="row" id="c3" style="display: none;">
+                <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Deoxycorticosterone</h2><br>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 240px;">₹9520</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;" (click)="atc('Deoxycorticosterone',9520);buy(9520);">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Deoxycorticosterone',9520)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Aldosterone</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Tue: 2PM, 4th Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹1600</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;" (click)="atc('Aldosterone',1600);buy(1600);">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Aldosterone',1600)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: 280px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Androstenedione</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 2PM, Next Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹1820</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -540px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Aldosterone, 24 Hrs Urine</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Mon: 2PM, 4th Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">24 Hrs Urine</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹1600</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- <div class="card" style="width: 18rem; margin: 550px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Serum Cortisol</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily : 5 PM, Same Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹550</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -810px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Dehydroepiandrosterone(DHEA)</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily : 2 PM, Next Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹2450</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>-->
+            </div> 
+            <div class="row" id="c4" style="display: none;">
+                <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Alkaline Phosphatase (ALP)</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 4HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹170</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;" (click)="atc('Alkaline Phosphatase (ALP)',170);buy(170);">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Alkaline Phosphatase (ALP)',170)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Calcium</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹170</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;" (click)="atc('Calcium',170);buy(170);">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Calcium',170)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: 280px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Alpha 2 Macroglobulin</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Mon,Fri: 2 PM, 12th Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹2740</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -540px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Blood Urea</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹130</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- <div class="card" style="width: 18rem; margin: 550px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Vitamin D Panel</h2>
+                      <p class="card-text">Specimen:</p>
+                      <p class="card-text" style="margin-left: 250px;">₹900</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -810px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;" id="fiveh">Alkaline Phosphatase Isoenzymes</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Mon: 2 PM, 5th Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹5200</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>-->
+            </div> 
+            <div class="row" id="c5" style="display: none;">
+                <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Apolipoprotein E (Apo E)</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Mon: 2 PM, 4th Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹6300</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Apolipoprotein E (Apo E)',6300)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Apolipoprotein B (Apo B)</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">M,W,F: 12 PM</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹680</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Apolipoprotein B (Apo B)',680)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: 280px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Lipoprotein (A)</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">M,W,F: 2 PM, SAME Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹950</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -540px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Total Cholestrol</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹150</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- <div class="card" style="width: 18rem; margin: 550px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Triglycerides</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹300</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -810px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;" id="fiveh">Troponin l, Rapid Card</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 5PM, Same day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">WB-EDTA/Heparin</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹1600</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>-->
+            </div> 
+            <div class="row" id="c6" style="display: none;">
+                <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Creatinine</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹140</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Creatinine',140)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Blood Urea Nitrogen (BUN)</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹140</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Blood Urea Nitrogen (BUN)',140)">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: 280px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Cystatin C</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 12 PM, 2nd Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                      <p class="card-text" style="margin-left: 240px;">₹1200</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -540px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Citrate, 24 HRS Urine</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 2 PM, 3rd Working Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">24 Hour Urine</span></p>
+                      <p class="card-text" style="margin-left: 250px;">820</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <!-- <div class="card" style="width: 18rem; margin: 550px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Phosphorus</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, Next Day</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹160</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>
+                <div class="card" style="width: 18rem; margin: -810px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                    <div class="card-body">
+                      <h2 class="card-title" style="color: #191970; font-family: sans-serif;" id="fiveh">Uric Acid</h2>
+                      <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                      <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                      <p class="card-text" style="margin-left: 250px;">₹160</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                      <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                      &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;">Add to Cart</button>
+                    </div>
+                </div>-->
+                </div> 
+                <div class="row" id="c7" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Ceruloplasmin</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">M,W,F: 12 PM</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹1100</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Ceruloplasmin',1100)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Cholinesterase</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily, 2 PM, 2nd Working Day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                        <p class="card-text" style="margin-left: 250px;">₹490</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Cholinesterase',490)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="row" id="c8" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Amylase</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                        <p class="card-text" style="margin-left: 250px;">₹450</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Amylase',450)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Lipase</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                        <p class="card-text" style="margin-left: 250px;">₹630</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Lipase',630)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="row" id="c9" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Thyroid Antibodies Panel</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily, 2 PM, same day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹2500</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Thyroid Antibodies Panel',2500)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Total T4 (Thyroxine)</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, SAME DAY</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                        <p class="card-text" style="margin-left: 250px;">₹200</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Total T4 (Thyroxine)',200)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="row" id="c10" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Glucose Challenge Test (GCT)</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2HRS</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">PLASMA FLUORIDE</span></p>
+                        <p class="card-text" style="margin-left: 250px;">₹400</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Glucose Challenge Test (GCT)',400)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Glucose/Sugar Fasting</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, 2 HRS same day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">PLASMA FLUORIDE</span></p>
+                        <p class="card-text" style="margin-left: 260px;">₹80</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Glucose Sugar Fasting',80)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="row" id="c11" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Zinc</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 2 PM, Next Working Day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum/Plasma</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹1800</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Zinc',1800)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Zinc,Spot Urine</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 2 PM, 3rd Working Day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Spot Urine (Use Metal Free)</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹1800</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Zinc Spot Urine',1800)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="row" id="c12" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Musk Antibody</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Mon: 2 PM, 3rd Working Day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹5500</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Musk Antibody',5500)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Acetylcholine Receptor Antibody</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 12 PM, 3rd Working Day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹2170</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Acetylcholine Receptor Antibody',170)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>
+              <div class="row" id="c13" style="display: none;">
+                  <div class="card" style="width: 18rem; margin: -163px 550px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;" id="fiveh2">Active Vitamin B12 (Holotranscobalmin)</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">Daily: 2 PM, 2nd Working Day</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">Serum</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹1600</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Active Vitamin B12 (Holotranscobalmin)',1600)">Add to Cart</button>
+                      </div>
+                  </div>
+                  <div class="card" style="width: 18rem; margin: -260px 920px; height: 260px; width: 350px; background-color:rgb(235, 197, 39);">
+                      <div class="card-body">
+                        <h2 class="card-title" style="color: #191970; font-family: sans-serif;">Vitamin B12/Cobalamin</h2>
+                        <p class="card-text" style="font-family:'Arial'; font-weight: 800;">DAILY, SAME DAY</p>
+                        <p class="card-text">Specimen: <span style="color: darkblue;">SERUM</span></p>
+                        <p class="card-text" style="margin-left: 240px;">₹1100</p><hr style="border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;">
+                        <button class="btn btn-primary" style="border-radius: 20px; text-align: center; width: 100px; background-color:#ec940f;;">Buy Now</button>
+                        &nbsp;<button class="btn btn-primary" style="border-radius: 20px; text-align: center;margin-left:60px; width: 120px; background-color: khaki;" (click)="atc('Vitamin B12/Cobalamin',1100)">Add to Cart</button>
+                      </div>
+                  </div>
+              </div>

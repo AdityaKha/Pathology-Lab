@@ -1,0 +1,61 @@
+.card
+{width: 18rem; margin:  auto; height: 260px; width: 350px; background-color:darkseagreen}
+
+.pname{
+    color: #191970; font-family: sans-serif;
+    font-size: 16pt;
+}
+
+.hrcard{
+    border-top: 2px dashed black; margin-left: -15px; color: #fff; background-color: white; width: 110%;
+}
+.wrapper{
+    max-width: 500px;
+    margin-left: 400px;
+    margin-bottom: 200px;
+    width: 100%;
+}
+.wrapper .search-input{
+    position: relative;
+    background-color: white;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 1px 5px 3px rgba(0,0,0,0.12);
+}
+.search-input input{
+    height: 55px;
+    width: 100%;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    padding: 0 60px 0 20px;
+    font-size: 18px;
+    box-shadow: 0px 1px 5px rgba(0,0,0,0.1);
+} 
+.search-input .icon{
+    height: 55px;
+    width: 55px;
+    line-height: 55px;
+    position: absolute;
+    top:0;
+    right: 0;
+    color: black;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+}
+.search-input li{
+    list-style: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+.autocom-box{
+    padding: 0;
+}
+body{
+    overflow-x: hidden;
+}
+#dv1{
+    margin: 20px auto;
+}

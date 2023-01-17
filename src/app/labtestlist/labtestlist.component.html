@@ -1,0 +1,14 @@
+<div class="wrapper">
+  <div class="search-input">
+    <input type="text" [(ngModel)]="searchedKeyword" (click)="ips()" placeholder="Input your desired test" style="border-radius: 8px;">
+    <div id="ib" style="display: none;">
+    <ul class="autocom-box" *ngFor="let item of filterResultDataSet | filter:searchedKeyword">
+      <li>{{item.test}}</li>
+    </ul>
+    </div>
+    <div class="icon" style="margin-left: 100px;"><i class="bi bi-search"></i></div>
+  </div>
+  </div> 
+
+
+              
